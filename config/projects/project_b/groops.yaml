@@ -1,3 +1,4 @@
+#NOTE: This file is spelt incorrectly in purpose to show it doesn't matter what the file is called
 groups:
 - name: admins
   members:
