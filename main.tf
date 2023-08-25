@@ -8,18 +8,20 @@ terraform {
 }
 
 locals {
-  const_both           = "both"
-  const_yaml           = "yaml"
-  const_json           = "json"
+  const_both = "both"
+  const_yaml = "yaml"
+  const_json = "json"
 }
 
 locals {
   file_extension_match = "**/*.${var.config_file_type == local.const_both ? "{${local.const_yaml},${local.const_json}}" : var.config_file_type}"
 
   raw_data = merge({ for filepath in fileset(var.config_file_folder_path, local.file_extension_match) :
-    basename(dirname(filepath)) => (endswith(filepath, ".${local.const_yaml}") ?
-      yamldecode(file("${var.config_file_folder_path}/${filepath}")) :
-      jsondecode(file("${var.config_file_folder_path}/${filepath}")))... #NOTE: This elipsis enables multiple files under the same project folder
+    basename(dirname(filepath)) => (
+      endswith(filepath, ".${local.const_yaml}") ?
+        yamldecode(file("${var.config_file_folder_path}/${filepath}")) :
+        jsondecode(file("${var.config_file_folder_path}/${filepath}"))
+    )... #NOTE: This elipsis enables multiple files under the same project folder
   })
 
   projects = { for project in keys(local.raw_data) : project => project }
