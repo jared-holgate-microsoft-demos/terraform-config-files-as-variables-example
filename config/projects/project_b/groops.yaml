@@ -1,0 +1,11 @@
+groups:
+- name: admins
+  members:
+  - usere
+  - userf
+
+- name: users
+  members:
+  - userg
+  - userh
+

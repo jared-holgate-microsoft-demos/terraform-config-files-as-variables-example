@@ -1,0 +1,18 @@
+{
+  "groups": [
+    {
+      "name": "specialGroup1",
+      "members": [
+        "useri",
+        "userj"
+      ]
+    },
+    {
+      "name": "specialGroup2",
+      "members": [
+        "userk",
+        "userl"
+      ]
+    }
+  ]
+}
