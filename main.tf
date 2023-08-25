@@ -19,7 +19,7 @@ locals {
   raw_data = merge({ for filepath in fileset(var.config_file_folder_path, local.file_extension_match) :
     basename(dirname(filepath)) => (endswith(filepath, ".${local.const_yaml}") ?
       yamldecode(file("${var.config_file_folder_path}/${filepath}")) :
-    jsondecode(file("${var.config_file_folder_path}/${filepath}")))... #NOTE: This elipsis enables multiple files under the same project folder
+      jsondecode(file("${var.config_file_folder_path}/${filepath}")))... #NOTE: This elipsis enables multiple files under the same project folder
   })
 
   projects = { for project in keys(local.raw_data) : project => project }
